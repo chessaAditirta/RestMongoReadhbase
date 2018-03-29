@@ -1,50 +1,55 @@
 package com.chessa.example.mongorest.RestMongoReadhbase.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.sql.Time;
 
 @Document(collection="tweet")
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
 //        allowGetters = true)
 public class Twitter {
     @Id
-    private Long id;
+    private String _id;
 
-    @NotBlank
+//    @NotBlank
     private String username;
 
-    @NotBlank
+//    @NotBlank
     private String hastag;
 
-    @NotBlank
+//    @NotBlank
     private String waktu;
 
-    @NotBlank
+//    @NotBlank
     private String text;
 
-    private Boolean completed = false;
 
     public Twitter() {
         super();
     }
 
-    public Twitter(@NotBlank String username, @NotBlank String hastag, @NotBlank String waktu, @NotBlank String text) {
+    public Twitter(String _id, String username, String hastag, String waktu, String text) {
+        this._id = _id;
         this.username = username;
         this.hastag = hastag;
         this.waktu = waktu;
         this.text = text;
     }
 
-    public Long getId() {
-        return id;
+    public Twitter(String username, String hastag, String waktu, String text) {
+        this.username = username;
+        this.hastag = hastag;
+        this.waktu = waktu;
+        this.text = text;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getUsername() {
@@ -79,23 +84,14 @@ public class Twitter {
         this.text = text;
     }
 
-    public Boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
-
     @Override
     public String toString() {
         return "Twitter{" +
-                "id=" + id +
+                "_id=" + _id +
                 ", username='" + username + '\'' +
                 ", hastag='" + hastag + '\'' +
-                ", waktu='" + waktu + '\'' +
+                ", waktu=" + waktu +
                 ", text='" + text + '\'' +
-                ", completed=" + completed +
                 '}';
     }
 }
